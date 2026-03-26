@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+
+<StackPane fx:id="rootPane" style="-fx-background-color: linear-gradient(to bottom right, #1a1a2e, #16213e); -fx-padding: 30;"
+           xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.example.photogallery.controllers.GalleryController">
+
+    <VBox spacing="20" style="-fx-background-color: transparent;" alignment="CENTER">
+
+        <!-- Заголовок -->
+        <Label style="-fx-text-fill: linear-gradient(to right, #ff6b6b, #ff8e8e); -fx-font-size: 32px; -fx-font-weight: bold;" text="📸 PhotoGallery"/>
+
+        <!-- Кнопка добавления изображения -->
+        <Button fx:id="addImageButton" onAction="#onAddImage" maxWidth="400" prefHeight="50"/>
+
+        <!-- Область отображения изображения -->
+        <StackPane style="-fx-background-color: rgba(0, 0, 0, 0.4); -fx-background-radius: 25; -fx-border-radius: 25;
+                          -fx-border-color: rgba(255, 255, 255, 0.2); -fx-border-width: 2; -fx-padding: 20;">
+            <ImageView fx:id="displayArea" fitHeight="550" fitWidth="1000" preserveRatio="true"
+                       style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 20, 0.5, 0, 0);"/>
+            <Label fx:id="emotionLabel"/>
+        </StackPane>
+
+        <!-- Прогресс и счетчик -->
+        <VBox spacing="10" maxWidth="600">
+            <ProgressBar fx:id="progressBar" prefWidth="Infinity" style="-fx-background-color: rgba(255, 255, 255, 0.2); -fx-background-radius: 15; -fx-padding: 4;" />
+            <Label fx:id="counterLabel" style="-fx-text-fill: #e0e0e0; -fx-font-size: 16px; -fx-font-weight: bold;" alignment="CENTER"/>
+        </VBox>
+
+        <!-- Панель эмоций -->
+        <HBox alignment="CENTER_RIGHT" spacing="15">
+            <Label text="Реакция:" style="-fx-text-fill: #e0e0e0; -fx-font-size: 16px; -fx-font-weight: bold;"/>
+            <ComboBox fx:id="emotionSelector" onAction="#onEmotionChanged"
+                      style="-fx-background-color: #2c3e50; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 20;"
+                      prefWidth="200"/>
+        </HBox>
+
+        <!-- Кнопки управления: Назад, Плей, Пауза, Вперед -->
+        <HBox alignment="CENTER" spacing="30">
+            <Button fx:id="prevButton" onAction="#onPreviousClick" prefWidth="80" prefHeight="80"/>
+            <Button fx:id="playButton" onAction="#onStartSlideshow" prefWidth="80" prefHeight="80"/>
+            <Button fx:id="stopButton" onAction="#onStopSlideshow" prefWidth="80" prefHeight="80"/>
+            <Button fx:id="nextButton" onAction="#onNextClick" prefWidth="80" prefHeight="80"/>
+        </HBox>
+
+        <!-- Настройка интервала -->
+        <HBox alignment="CENTER" spacing="15">
+            <Label text="Интервал (мс):" style="-fx-text-fill: #e0e0e0; -fx-font-size: 14px; -fx-font-weight: bold;"/>
+            <TextField fx:id="intervalInput" promptText="2000" prefWidth="120"
+                       style="-fx-background-color: #2c3e50; -fx-text-fill: white; -fx-background-radius: 20; -fx-padding: 10 15; -fx-font-size: 14px;"/>
+            <Button onAction="#onApplyInterval" text="Применить"
+                    style="-fx-background-color: linear-gradient(to bottom, #4a5e7a, #2a3a5a); -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 20; -fx-padding: 10 25;"/>
+        </HBox>
+
+    </VBox>
+</StackPane>
